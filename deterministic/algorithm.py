@@ -12,40 +12,25 @@ class Deterministic:
 
 	def process(self, chain):
 		next_state = self.initial_state
-
-		if chain == LAMBDA_SYMBOL and next_state in self.acceptance_states:
-			return True
+		if chain == LAMBDA_SYMBOL and next_state in self.acceptance_states: return True
 
 		for symbol in chain:
-			if not symbol in self.alphabet:
-				return False
-
+			if not symbol in self.alphabet: return False
 			tmp_state = self.delta.get_transition_at_position(next_state, symbol)
 			next_state = tmp_state
-			if next_state == None:
-				return False
+			if next_state == None: return False
 
-		if next_state in self.acceptance_states:
-			return True
-		else:
-			return False
+		return True if next_state in self.acceptance_states else False
 
 	def __str__(self):
 		string = "Q:"
-		for state in self.states:
-			string += " " + str(state)
-
+		for state in self.states: string += " " + str(state)
 		string += "\nΣ:"
-		for symbol in self.alphabet:
-			string += " " + symbol
-
+		for symbol in self.alphabet: string += " " + symbol
 		string += "\nδ:" + self.delta.__str__()
-
 		string += "\nq: " + self.initial_state
-
 		string += "\nF:"
-		for state in self.acceptance_states:
-			string += " " + state
+		for state in self.acceptance_states: string += " " + state
 
 		return string
 

@@ -57,11 +57,11 @@ afn = Nondeterministic(states, alphabet, initial_states, acceptance_states, delt
 
 number_of_chains = int(input())
 
-# print("\n-----\n")
-# print(afn)
-# print("\n-----\n")
-# print(afn.dfa_equivalent)
-# print("\n-----\n")
+print("\n-----\n")
+print(afn)
+print("\n-----\n")
+print(afn.dfa_equivalent)
+print("\n-----\n")
 
 for x in range(number_of_chains):
 	chain = input()

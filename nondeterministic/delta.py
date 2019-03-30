@@ -5,17 +5,11 @@ class TransitionsNfa:
 		self.states = states
 		self.alphabet = alphabet
 		self.delta = {}
-		self.symbols = {}
-		for letter in alphabet:
-			self.symbols[letter] = []
-		for state in states:
-			self.add_state(str(state))
+		self.symbols = { letter: [] for letter in alphabet }
+		for state in states: self.add_state(str(state))
 
 	def get_adjacents(self):
-		symbols = {}
-		for letter in self.alphabet:
-			symbols[letter] = []
-		return symbols
+		return { letter: [] for letter in self.alphabet }
 
 	def add_state(self, state):
 		self.delta[state] = self.get_adjacents()
@@ -36,10 +30,7 @@ class TransitionsNfa:
 		return self.delta[state][symbol]
 
 	def print_n_character(self, size, character = " "):
-		string = ""
-		for x in range(size):
-			string += character
-		return string
+		return "".join(str(character) for s in range(size))
 
 	def __str__(self):
 		string = " "

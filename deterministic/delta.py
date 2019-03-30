@@ -5,17 +5,11 @@ class TransitionsDfa:
 		self.states = states
 		self.alphabet = alphabet
 		self.delta = {}
-		self.symbols = {}
-		for letter in alphabet:
-			self.symbols[letter] = None
-		for state in states:
-			self.add_state(str(state))
+		self.symbols = self.get_adjacents()
+		for state in states: self.add_state(str(state))
 
 	def get_adjacents(self):
-		symbols = {}
-		for letter in self.alphabet:
-			symbols[letter] = None
-		return symbols
+		return { letter: None for letter in self.alphabet }
 
 	def add_state(self, state):
 		self.states.append(state)
@@ -28,16 +22,10 @@ class TransitionsDfa:
 		return self.delta[state][symbol]
 
 	def has_state(self, state):
-		if state in self.delta:
-			return True
-		else:
-			return False
+		return True if state in self.delta else False
 
 	def print_n_character(self, size, character = " "):
-		string = ""
-		for x in range(size):
-			string += character
-		return string
+		return "".join(str(character) for s in range(size))
 
 	def __str__(self):
 		string = " "
@@ -57,5 +45,4 @@ class TransitionsDfa:
 			string += "\n   " + state + self.print_n_character(biggest_state_size - len(state))
 			for symbol in self.alphabet:
 				string += SEPARATOR + self.get_transition_at_position(state, symbol) + self.print_n_character(biggest_state_size - 1)
-
 		return string
