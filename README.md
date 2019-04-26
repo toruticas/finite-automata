@@ -10,6 +10,30 @@ Para validar se uma cadeia é processável pelo autômato finito de entrada ele 
 
 # Interações
 
+O programa lê todas as entradas no arquivo `__main__.py` armazenando o alfabeto terminal, o conjunto de estados, o conjunto de estados de aceitação, o conjunto de estados iniciais de acordo com a descrição da entrada. As transições são todas transformadas em transformações não determinísticas de acordo com o **Delta Nondeterministic** para iniciar o processamento. Ao definir o automato finito não deterministico através da entrada, o automato finito determinístico também é calculado. A partir do automato finito deterministico fica claro as transições.
+
+# Árvore de Arquivos
+
+```
+.
+├── deterministic       # AFD
+│   ├── algorithm.py    # Descreve o funcionamento de um automato finito determinístico 
+│   └── delta.py        # Descreve as transições de um automato finito determinístico
+├── dist.py             # Entregável para o run.codes
+├── __main__.py         #
+├── nondeterministic    # AFN
+│   ├── algorithm.py    # Descreve o funcionamento de um automato finito não determinístico
+│   └── delta.py        # Descreve as transições de um automato finito não determinístico 
+├── README.md
+```
+
+# Concatenando o Arquivo
+
+- Junte todos os arquivos em um único arquivo
+- Remova todos os if-else inline
+- troque "input" por "raw_input"
+- depois de cada raw_input adicione o método .strip()
+
 ## Entrada
 
 - Linha (1): número de estados: para o conjunto de estados ![alt text][q_mai], assume-se os nomes dos estados de ![alt text][q_0] a ![alt text][q_n_-_1] , onde n é o número de estados (Obs.: ![alt text][q_0] é o estado inicial, quando houver um único estado inicial (AFD)). Assuma 1 ≤ n ≤ 10;
